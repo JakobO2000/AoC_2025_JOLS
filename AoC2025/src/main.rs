@@ -22,6 +22,7 @@ fn main() {
     // Dispatch to the selected day's solver
     match day_num {
         1 => days::day01::run(&input),
+        2 => days::day02::run(&input),
         // Add more as you go
         _ => eprintln!("Day {} not implemented yet", day_num),
     }
