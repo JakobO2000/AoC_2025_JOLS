@@ -32,13 +32,13 @@ pub fn part2(input: &str) -> u64 {
     let digits = 12;
 
     for line in input.lines() {
-        let char_int: Vec<u32> = line.chars().map(|c| c.to_digit(10).unwrap()).collect();
-        let n = char_int.len();
+        let line_int: Vec<u32> = line.chars().map(|c| c.to_digit(10).unwrap()).collect();
+        let len = line_int.len();
         let mut stack: Vec<u32> = Vec::new();
 
-        for (i, &d) in char_int.iter().enumerate() {
+        for (i, &char) in line_int.iter().enumerate() {
             while let Some(&last) = stack.last() {
-                if d > last && stack.len() + (n - i) > digits {
+                if char > last && stack.len() + (len - i) > digits {
                     stack.pop();
                 } else {
                     break;
@@ -46,13 +46,13 @@ pub fn part2(input: &str) -> u64 {
             }
 
             if stack.len() < digits {
-                stack.push(d);
+                stack.push(char);
             }
         }
 
         let mut number: u64 = 0;
-        for &d in &stack {
-            number = number * 10 + d as u64;
+        for &char in &stack {
+            number = number * 10 + char as u64;
         }
 
         jolt += number;
